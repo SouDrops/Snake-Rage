@@ -30,13 +30,15 @@ public class Snake : MonoBehaviour
 
     private void Start()
     {
-        ResetState();
-        rageBar.value = 0;
-        rageProgress = 0;
+        ResetState(); // Initialize the snake's state
+        rageBar.value = 0; // Set rage bar to empty
+        rageProgress = 0; // Reset rage progress
     }
 
     private void Update()
     {
+        // Handle rage mode timer and deactivate when the timer runs out
+
         if (isRageModeActive)
         {
             rageTimer -= Time.deltaTime;
@@ -45,9 +47,10 @@ public class Snake : MonoBehaviour
                 DeactivateRageMode();
             }
 
-            StopRageIncrement();
+            StopRageIncrement(); // Prevent rage bar from increasing during rage mode
         }
 
+        // Handle directional input for controlling the snake
         // Only allow turning up or down while moving in the x-axis
         if (direction.x != 0f)
         {
@@ -70,7 +73,7 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Wait until the next update before proceeding
+        // Control the update frequency based on the snake's speed
         if (Time.time < nextUpdate) {
             return;
         }
@@ -99,6 +102,7 @@ public class Snake : MonoBehaviour
 
     public void Grow()
     {
+        // Add a new segment to the snake
         Transform segment = Instantiate(segmentPrefab);
         segment.position = segments[segments.Count - 1].position;
         segment.gameObject.tag = "SnakeBody"; // Assign the SnakeBody tag
@@ -108,7 +112,7 @@ public class Snake : MonoBehaviour
         rageProgress += foodRageIncrement;
         if (rageProgress >= 1f)
         {
-            ActivateRageMode();
+            ActivateRageMode(); // Activate rage mode if the bar is full
             rageProgress = 0f; // Reset progress after activation
         }
 
@@ -121,6 +125,7 @@ public class Snake : MonoBehaviour
 
     private void StopRageIncrement()
     {
+        // Prevent rage bar increment during rage mode
         if (isRageModeActive)
         {
             foodRageIncrement = 0f;
@@ -130,6 +135,7 @@ public class Snake : MonoBehaviour
 
     private void DeactivateRageMode()
     {
+        // Deactivate rage mode and reset values
         isRageModeActive = false;
         speedMultiplier = 1f; // Reset speed
         transform.localScale = Vector3.one; // Reset head size
@@ -146,6 +152,7 @@ public class Snake : MonoBehaviour
 
     private void ActivateRageMode()
     {
+        // Activate rage mode and increase speed and size
         isRageModeActive = true;
         rageTimer = rageModeDuration;
         speedMultiplier = rageSpeedMultiplier; // Increase speed
@@ -161,13 +168,14 @@ public class Snake : MonoBehaviour
 
     public void ResetState()
     {
+        // Reset snake state to initial conditions
         direction = Vector2Int.right;
         transform.position = Vector3.zero;
 
         // Reset score
         ScoreManager.Instance.ResetScore();
 
-        // Start at 1 to skip destroying the head
+        // Clear all segments except the head
         for (int i = 1; i < segments.Count; i++)
         {
             Destroy(segments[i].gameObject);
@@ -176,6 +184,7 @@ public class Snake : MonoBehaviour
         segments.Clear();
         segments.Add(transform);
 
+        // Grow the snake to its initial size
         for (int i = 0; i < initialSize - 1; i++)
         {
             Grow();
@@ -185,6 +194,7 @@ public class Snake : MonoBehaviour
 
     public bool Occupies(int x, int y)
     {
+        // Check if the snake occupies a specific grid position
         foreach (Transform segment in segments)
         {
             if (Mathf.RoundToInt(segment.position.x) == x &&
@@ -198,20 +208,21 @@ public class Snake : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Handle collisions with various objects
         if (other.gameObject.CompareTag("Food"))
         {
-            Grow();
-            ScoreManager.Instance.AddScore(10); // Add points when food is eaten
+            Grow(); // Grow when food is eaten
+            ScoreManager.Instance.AddScore(10); // Add points 
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            HandleGameOver();
+            HandleGameOver(); // Trigger game over on obstacle collision
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
             if (moveThroughWalls)
             {
-                Traverse(other.transform);
+                Traverse(other.transform); // Move through walls if enabled
             }
             else
             {
@@ -221,7 +232,7 @@ public class Snake : MonoBehaviour
 
         else if (other.gameObject.CompareTag("SnakeBody") && !isRageModeActive)
         {
-            // Ensure the collision check is only for the head of the snake
+            // Trigger game over if colliding with the body when not in rage mode
             if (segments.Count > 0 && other.transform != segments[0])
             {
                 HandleGameOver();
@@ -241,6 +252,7 @@ public class Snake : MonoBehaviour
 
     private void Traverse(Transform wall)
     {
+        // Handle moving through walls by wrapping around
         Vector3 position = transform.position;
 
         if (direction.x != 0f) {
@@ -254,6 +266,7 @@ public class Snake : MonoBehaviour
 
     public List<Transform> GetSegments()
     {
+        // Return the list of snake segments
         return segments;
     }
 
