@@ -21,7 +21,7 @@ public class Snake : MonoBehaviour
     public Vector3 rageHeadScale = new Vector3(1.5f, 1.5f, 1f); // Increased head size during rage mode
     private float rageTimer = 0f;
     private float rageProgress = 0f; // Tracks rage bar progress
-    public float foodRageIncrement = 0.1f; // How much the bar fills per food
+    public float foodRageIncrement = 0.2f; // How much the bar fills per food
     public UnityEngine.UI.Slider rageBar; // Reference to the slider
     //public bool stopRageIncrement; // Stops accumulating rage while in rage mode
 
@@ -100,7 +100,7 @@ public class Snake : MonoBehaviour
         nextUpdate = Time.time + (1f / (speed * speedMultiplier));
     }
 
-    public void Grow()
+    public void Grow(bool isInitialization = false)
     {
         // Add a new segment to the snake
         Transform segment = Instantiate(segmentPrefab);
@@ -108,18 +108,21 @@ public class Snake : MonoBehaviour
         segment.gameObject.tag = "SnakeBody"; // Assign the SnakeBody tag
         segments.Add(segment);
 
-        // Increment rage progress
-        rageProgress += foodRageIncrement;
-        if (rageProgress >= 1f)
+        if (!isInitialization) // Only increment rage during gameplay
         {
-            ActivateRageMode(); // Activate rage mode if the bar is full
-            rageProgress = 0f; // Reset progress after activation
-        }
+            // Increment rage progress
+            rageProgress += foodRageIncrement;
+            if (rageProgress >= 1f)
+            {
+                ActivateRageMode();
+                rageProgress = 0f; // Reset progress after activation
+            }
 
-        // Update rage bar UI
-        if (rageBar != null)
-        {
-            rageBar.value = rageProgress;
+            // Update rage bar UI
+            if (rageBar != null)
+            {
+                rageBar.value = rageProgress;
+            }
         }
     }
 
@@ -168,12 +171,30 @@ public class Snake : MonoBehaviour
 
     public void ResetState()
     {
+        Time.timeScale = 1f; // Resume the game
+
         // Reset snake state to initial conditions
         direction = Vector2Int.right;
         transform.position = Vector3.zero;
 
         // Reset score
         ScoreManager.Instance.ResetScore();
+
+        // Reset rage mode variables
+        isRageModeActive = false;
+        rageTimer = 0f;
+        rageProgress = 0f;
+        speedMultiplier = 1f; // Reset speed multiplier to normal
+        transform.localScale = Vector3.one; // Reset the snake head size to normal
+
+        // Reset rage bar UI
+        if (rageBar != null)
+        {
+            rageBar.value = 0f; // Ensure rage bar is reset visually
+            rageBar.fillRect.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+            rageBar.GetComponentInChildren<UnityEngine.UI.Image>().color = Color.white;
+            sliderHandle.enabled = true; // Re-enable slider handle
+        }
 
         // Clear all segments except the head
         for (int i = 1; i < segments.Count; i++)
@@ -187,10 +208,17 @@ public class Snake : MonoBehaviour
         // Grow the snake to its initial size
         for (int i = 0; i < initialSize - 1; i++)
         {
-            Grow();
+            Grow(true);
         }
-    }
 
+        // Disable collider briefly to avoid immediate collision
+        GetComponent<BoxCollider2D>().enabled = false;
+        Invoke(nameof(EnableCollider), 0.1f); // Re-enable after a short delay
+    }
+    private void EnableCollider()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
 
     public bool Occupies(int x, int y)
     {

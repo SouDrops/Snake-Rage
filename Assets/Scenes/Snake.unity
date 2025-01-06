@@ -1290,7 +1290,7 @@ MonoBehaviour:
   speedMultiplier: 1
   initialSize: 4
   moveThroughWalls: 1
-  isRageModeActive: 0
+  isRageModeActive: 1
   rageModeDuration: 10
   rageSpeedMultiplier: 2
   rageHeadScale: {x: 1.5, y: 1.5, z: 1}
