@@ -46,7 +46,7 @@ public class Food : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Assuming the snake's head is tagged as "Player"
+        if (other.CompareTag("Player")) 
         {
             ScoreManager.Instance.AddScore(10); // Add 10 points per food pickup
             RandomizePosition(); // Move the food to a new location
