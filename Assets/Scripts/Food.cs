@@ -6,6 +6,7 @@ public class Food : MonoBehaviour
     public Collider2D gridArea;
     private Snake snake;
 
+    public AudioManager audioManager;  // Reference to AudioManager
     private void Awake()
     {
         snake = FindObjectOfType<Snake>();
@@ -50,6 +51,9 @@ public class Food : MonoBehaviour
         {
             ScoreManager.Instance.AddScore(10); // Add 10 points per food pickup
             RandomizePosition(); // Move the food to a new location
+
+            // Play the sound through AudioManager
+            audioManager.PlayEatSound();
         }
     }
 

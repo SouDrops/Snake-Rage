@@ -30,6 +30,8 @@ public class Snake : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction movementAction;
 
+    public AudioManager audioManager; // Reference to AudioManager
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -271,6 +273,12 @@ public class Snake : MonoBehaviour
     {
         // Trigger the Game Over screen
         ScoreManager.Instance.ShowGameOverScreen();
+
+        // Play game over sound
+        if (audioManager != null)
+        {
+            audioManager.PlayGameOverSound(); // Assuming this method handles the game over sound
+        }
 
         // Stop the game
         Time.timeScale = 0f; // Pause the game
