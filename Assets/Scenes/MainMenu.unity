@@ -217,6 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1867639657}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &31538793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +353,18 @@ MonoBehaviour:
       - m_Target: {fileID: 426502716}
         m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
         m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1867639657}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -483,6 +507,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1867639657}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &232903921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,6 +590,7 @@ MonoBehaviour:
   optionsButton: {fileID: 31538790}
   quitButton: {fileID: 165292313}
   backButton: {fileID: 802251658}
+  audioManager: {fileID: 1867639657}
 --- !u!4 &426502717
 Transform:
   m_ObjectHideFlags: 0
@@ -874,6 +911,18 @@ MonoBehaviour:
       - m_Target: {fileID: 426502716}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: OnBackButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1867639657}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1209,6 +1258,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567702500}
   m_CullTransparentMesh: 1
+--- !u!1001 &1598882642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 505.02838
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 414.54965
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7218488
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227082081886893355, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1569409578616622920, guid: 07416e08be1f81045a74780e8bbd3eb0,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07416e08be1f81045a74780e8bbd3eb0, type: 3}
 --- !u!1 &1703422244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1508,18 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
+--- !u!114 &1867639657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6665047233549641644, guid: 07416e08be1f81045a74780e8bbd3eb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1598882642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e52d94e50e7a1146ac8cbd0006024fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2086697935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,3 +1662,4 @@ SceneRoots:
   - {fileID: 766585775}
   - {fileID: 1820859134}
   - {fileID: 426502717}
+  - {fileID: 1598882642}

@@ -1435,6 +1435,7 @@ MonoBehaviour:
   audioSource: {fileID: 1213418853}
   eatSound: {fileID: 8300000, guid: 8209bb9baed22f04296b5bedcc2f7cd9, type: 3}
   gameoverSound: {fileID: 8300000, guid: 3589f38f621c0df4a81ff1f2e6e612c2, type: 3}
+  clickSound: {fileID: 8300000, guid: f6b10d776e471904485beaf03e0cbb34, type: 3}
 --- !u!82 &1213418853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2617,6 +2618,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: RestartGame
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1213418852}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2053559969

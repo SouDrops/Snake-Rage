@@ -9,6 +9,7 @@ public class　MainMenuManager : MonoBehaviour
     public GameObject optionsButton;
     public GameObject quitButton;
     public GameObject backButton;
+    public AudioManager audioManager;  
 
     private void Start()
     {
@@ -84,6 +85,25 @@ public class　MainMenuManager : MonoBehaviour
 
     public void LoadGameScene()
     {
+        // Start coroutine to wait for the sound to finish before loading the scene
+        StartCoroutine(PlayClickSoundAndLoadScene());
+    }
+
+    private IEnumerator PlayClickSoundAndLoadScene()
+    {
+        // Play the click sound
+        if (audioManager != null)
+        {
+            audioManager.PlayClickSound();
+        }
+
+        // Wait for the click sound duration or a fraction of it
+        float soundDuration = audioManager.clickSound.length;
+
+        // Wait until the sound finishes playing before loading the scene
+        yield return new WaitForSeconds(Mathf.Min(soundDuration, 0.2f));
+
+        // Now load the scene after the sound is done
         SceneManager.LoadScene("Snake");
     }
 
