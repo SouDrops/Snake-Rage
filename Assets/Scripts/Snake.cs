@@ -24,10 +24,17 @@ public class Snake : MonoBehaviour
     private float rageProgress = 0f; // Tracks rage bar progress
     public float foodRageIncrement = 0.2f; // How much the bar fills per food
     public UnityEngine.UI.Slider rageBar; // Reference to the slider
-    //public bool stopRageIncrement; // Stops accumulating rage while in rage mode
-
 
     [SerializeField] private UnityEngine.UI.Image sliderHandle;
+
+    private PlayerInput playerInput;
+    private InputAction movementAction;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        movementAction = playerInput.actions["Move"];
+    }
 
     private void Start()
     {
@@ -52,23 +59,14 @@ public class Snake : MonoBehaviour
         }
 
         // Handle directional input for controlling the snake
-        // Only allow turning up or down while moving in the x-axis
-        if (direction.x != 0f)
+        Vector2 movementInput = movementAction.ReadValue<Vector2>();
+        if (direction.x != 0f && Mathf.Abs(movementInput.y) > Mathf.Abs(movementInput.x))
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
-                input = Vector2Int.up;
-            } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
-                input = Vector2Int.down;
-            }
+            input = movementInput.y > 0 ? Vector2Int.up : Vector2Int.down;
         }
-        // Only allow turning left or right while moving in the y-axis
-        else if (direction.y != 0f)
+        else if (direction.y != 0f && Mathf.Abs(movementInput.x) > Mathf.Abs(movementInput.y))
         {
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-                input = Vector2Int.right;
-            } else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-                input = Vector2Int.left;
-            }
+            input = movementInput.x > 0 ? Vector2Int.right : Vector2Int.left;
         }
     }
 
