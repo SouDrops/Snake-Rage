@@ -46,6 +46,8 @@ public class Snake : MonoBehaviour
         rageBar.value = 0; // Set rage bar to empty
         rageProgress = 0; // Reset rage progress
 
+        audioManager.StartGameplaySound();
+
         // Ensure particles are initially stopped
         if (rageBarParticles != null)
         {
@@ -208,6 +210,8 @@ public class Snake : MonoBehaviour
         speedMultiplier = 1f; // Reset speed multiplier to normal
         transform.localScale = Vector3.one; // Reset the snake head size to normal
 
+        audioManager.StartGameplaySound();
+
         // Reset rage bar UI
         if (rageBar != null)
         {
@@ -293,6 +297,8 @@ public class Snake : MonoBehaviour
     {
         // Trigger the Game Over screen
         ScoreManager.Instance.ShowGameOverScreen();
+
+        audioManager.StopGameplaySound();
 
         // Play game over sound
         if (audioManager != null)

@@ -1437,6 +1437,7 @@ MonoBehaviour:
   eatSound: {fileID: 8300000, guid: 8209bb9baed22f04296b5bedcc2f7cd9, type: 3}
   gameoverSound: {fileID: 8300000, guid: 3589f38f621c0df4a81ff1f2e6e612c2, type: 3}
   clickSound: {fileID: 8300000, guid: f6b10d776e471904485beaf03e0cbb34, type: 3}
+  gameplaySound: {fileID: 8300000, guid: 8b5ce89e2b6d7b3459be6ca5a2c1a48d, type: 3}
 --- !u!82 &1213418853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1447,11 +1448,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8b5ce89e2b6d7b3459be6ca5a2c1a48d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
