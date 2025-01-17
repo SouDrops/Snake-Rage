@@ -34,6 +34,13 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // Load the saved high score from PlayerPrefs
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        UpdateHighScoreUI();
+    }
+
     public void AddScore(int points)
     {
         Score += points;
