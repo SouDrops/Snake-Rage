@@ -32,6 +32,8 @@ public class Snake : MonoBehaviour
 
     public AudioManager audioManager; // Reference to AudioManager
 
+    public ParticleSystem rageBarParticles; // Reference to the Rage Bar particle system
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -43,6 +45,12 @@ public class Snake : MonoBehaviour
         ResetState(); // Initialize the snake's state
         rageBar.value = 0; // Set rage bar to empty
         rageProgress = 0; // Reset rage progress
+
+        // Ensure particles are initially stopped
+        if (rageBarParticles != null)
+        {
+            rageBarParticles.Stop();
+        }
     }
 
     private void Update()
@@ -152,6 +160,12 @@ public class Snake : MonoBehaviour
             rageBar.GetComponentInChildren<UnityEngine.UI.Image>().color = Color.white;
             rageBar.value = 0f;
         }
+
+        // Stop Rage Bar particles
+        if (rageBarParticles != null)
+        {
+            rageBarParticles.Stop();
+        }
     }
 
     private void ActivateRageMode()
@@ -167,6 +181,12 @@ public class Snake : MonoBehaviour
         {
             sliderHandle.enabled = false;
             rageBar.GetComponentInChildren<UnityEngine.UI.Image>().color = Color.red;
+        }
+
+        // Play Rage Bar particles
+        if (rageBarParticles != null)
+        {
+            rageBarParticles.Play();
         }
     }
 
