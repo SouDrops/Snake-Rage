@@ -103,7 +103,7 @@ public class　MainMenuManager : MonoBehaviour
         // Wait until the sound finishes playing before loading the scene
         yield return new WaitForSeconds(Mathf.Min(soundDuration, 0.2f));
 
-        // Now load the scene after the sound is done
+        // Load the scene after the sound is done
         SceneManager.LoadScene("Snake");
     }
 

@@ -7,6 +7,7 @@ public class Food : MonoBehaviour
     private Snake snake;
 
     public AudioManager audioManager;  // Reference to AudioManager
+
     private void Awake()
     {
         snake = FindObjectOfType<Snake>();
@@ -56,6 +57,4 @@ public class Food : MonoBehaviour
             audioManager.PlayEatSound();
         }
     }
-
-
 }

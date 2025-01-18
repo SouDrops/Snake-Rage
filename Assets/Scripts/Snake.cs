@@ -94,8 +94,8 @@ public class Snake : MonoBehaviour
             direction = input;
         }
 
-        // Set each segment's position to be the same as the one it follows. We
-        // must do this in reverse order so the position is set to the previous
+        // Set each segment's position to be the same as the one it follows. This        
+        // needs to be done in reverse order so the position is set to the previous
         // position, otherwise they will all be stacked on top of each other.
         for (int i = segments.Count - 1; i > 0; i--) {
             segments[i].position = segments[i - 1].position;
@@ -330,6 +330,4 @@ public class Snake : MonoBehaviour
         // Return the list of snake segments
         return segments;
     }
-
-
 }

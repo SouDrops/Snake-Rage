@@ -16,7 +16,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
@@ -82,12 +81,7 @@ public class ScoreManager : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
         }
-
-       
     }
-
-
-
 
     public void RestartGame()
     {
@@ -102,7 +96,7 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator ResetSnakeAfterDelay()
     {
         // Wait for a brief moment to ensure the Snake object is reloaded
-        yield return new WaitForSeconds(0.1f); // Adjust the time if necessary (e.g., 0.1f)
+        yield return new WaitForSeconds(0.1f); 
 
         // Now find and reset the Snake object
         Snake snake = FindObjectOfType<Snake>();
@@ -111,5 +105,4 @@ public class ScoreManager : MonoBehaviour
             snake.ResetState(); // Reset the snake's position and segments
         }
     }
-
 }
